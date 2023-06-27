@@ -34,32 +34,32 @@ let productsDB: products[] = [
   },
 ];
 
-app.get("/products/:itemNumber", function (request, response) {
+app.get('/products/:itemNumber', function (request, response) {
   const itemNumber = request.params.itemNumber;
-  const result = productsDB.filter((item) => item.itemNumber === itemNumber);
+  const result = productsDB.filter(item => item.itemNumber === itemNumber);
   response.json(result);
 });
 
-app.post("/products/:itemNumber", function (request, response) {
+app.post('/products/:itemNumber', function (request, response) {
   const body = request.body;
   productsDB.push(body);
   response.send("the product information has been saved correctly");
 });
 
-app.put("/products/:itemNumber", function (request, response) {
+app.put('/products/:itemNumber', function (request, response) {
   const itemNumber = request.params.itemNumber;
   const body = request.body;
   const productsIndex = productsDB.findIndex(
-    (item) => item.itemNumber === itemNumber
+    item => item.itemNumber === itemNumber
   );
   console.log("productsIndex", productsIndex);
   productsDB[productsIndex] = body;
   response.send("listing information updated successfully");
 });
 
-app.delete("/products/:itemNumber", function (request, response) {
+app.delete('/products/:itemNumber', function (request, response) {
   const itemNumber = request.params.itemNumber;
-  const result = productsDB.filter((item) => item.itemNumber !== itemNumber);
+  const result = productsDB.filter(item => item.itemNumber !== itemNumber);
   productsDB = result;
   response.json("Listing information removed successfully");
 });
